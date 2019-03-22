@@ -9,9 +9,9 @@ import { DeseosProvider } from '../../providers/deseos/deseos';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private deseos:DeseosProvider) {
+  constructor(public navCtrl: NavController, public deseosProvider:DeseosProvider) {
 
-    deseos.testProvider();
+    // deseosProvider.testProvider();
   }
 
 
