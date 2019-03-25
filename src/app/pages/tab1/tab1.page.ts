@@ -32,13 +32,11 @@ export class Tab1Page {
           text:'Cancelar',
           role:'cancel',
           handler:()=>{
-            console.log('Cancelar');
           
           }
         },{
           text:'Crear',
           handler:(data)=>{
-            console.log(data);
             if(data.titulo.length===0){
               return;
             }
@@ -52,5 +50,9 @@ export class Tab1Page {
       ]
     });
     alert.present();
+  }
+  listaSeleccionada( lista:Lista ){
+    this.router.navigate([`/tabs/tab1/agregar/${lista.id}`]);
+    
   }
 }

@@ -8,10 +8,11 @@
 
 <ion-content color="dark">
   <ion-list color="dark" class="item-content">
-    <ion-item detail color="dark" *ngFor="let lista of listas">
+    <ion-item detail color="dark" *ngFor="let lista of listas" (click)="listaSeleccionada( lista )">
       <ion-label>
         {{lista.titulo}}
       </ion-label>
+      <ion-note color="tertiary" slot="end">{{lista.items.length}} items</ion-note>
     </ion-item>
 
 
@@ -23,20 +24,6 @@
       </ion-fab-button>
     </ion-fab>
  
-    <ion-list>
-        <ion-item-sliding>
-          <ion-item>
-            <ion-label>Item</ion-label>
-          </ion-item>
-          <ion-item-options side="start">
-            <ion-item-option >Favorite</ion-item-option>
-            <ion-item-option color="danger" >Share</ion-item-option>
-          </ion-item-options>
-      
-          <ion-item-options side="end">
-            <ion-item-option >Unread</ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-      </ion-list>
+    
     
 </ion-content>
