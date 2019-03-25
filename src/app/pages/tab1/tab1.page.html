@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content color="dark">
+  <app-listas></app-listas>
   <ion-list color="dark" class="item-content">
     <ion-item detail color="dark" *ngFor="let lista of listas" (click)="listaSeleccionada( lista )">
       <ion-label>
