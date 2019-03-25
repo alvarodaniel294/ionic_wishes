@@ -1,4 +1,4 @@
-<ion-header color="dark">
+<ion-header no-border >
   <ion-toolbar color="dark">
     <ion-title>
       Pendientes
@@ -7,14 +7,14 @@
 </ion-header>
 
 <ion-content color="dark">
-  <ion-list>
+  <ion-list color="dark">
     <ion-item detail color="dark" *ngFor="let lista of listas">
       <ion-label>
         {{lista.titulo}}
       </ion-label>
     </ion-item>
 
-    
+
   </ion-list>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button color="tertiary"
