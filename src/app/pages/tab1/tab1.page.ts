@@ -51,8 +51,5 @@ export class Tab1Page {
     });
     alert.present();
   }
-  listaSeleccionada( lista:Lista ){
-    this.router.navigate([`/tabs/tab1/agregar/${lista.id}`]);
-    
-  }
+ 
 }

@@ -1,3 +1,12 @@
-<p>
-  listas works!
-</p>
+
+
+<ion-list color="dark" class="item-content">
+  <ion-item detail color="dark" *ngFor="let lista of listas" (click)="listaSeleccionada( lista )">
+    <ion-label>
+      {{lista.titulo}}
+    </ion-label>
+    <ion-note color="tertiary" slot="end">{{lista.items.length}} items</ion-note>
+  </ion-item>
+
+
+</ion-list>
