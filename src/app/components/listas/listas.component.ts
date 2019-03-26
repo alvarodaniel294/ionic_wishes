@@ -12,11 +12,11 @@ export class ListasComponent implements OnInit {
 
   @Input() terminada = true;
 
-  listas:Lista[] ;
-  constructor(private router:Router,
-              private deseosService:DeseosService) {
   
-                this.listas=deseosService.listas;
+  constructor(private router:Router,
+              public deseosService:DeseosService) {
+  
+              
   }
 
   ngOnInit() {}
@@ -27,6 +27,11 @@ export class ListasComponent implements OnInit {
     }else{
       this.router.navigate([`/tabs/tab1/agregar/${lista.id}`]);
     }
+    
+  }
+  borrarLista(lista:Lista){
+    this.deseosService.borrarLista(lista);
+    console.log('why');
     
   }
 
