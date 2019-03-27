@@ -27,6 +27,16 @@ export class DeseosService {
     return this.listas.find(listadata=> listadata.id=== id );
 
    }
+   editarNombreLista(lista:Lista,nuevoNombre:string){
+     console.log(nuevoNombre);
+     
+     this.listas.filter(listaAeditar=>{
+       if(listaAeditar.id===lista.id){
+         listaAeditar.titulo=nuevoNombre;
+         this.guardarStorage();
+       }
+     })
+   }
    guardarStorage(){
     localStorage.setItem('data', JSON.stringify(this.listas) );
    }

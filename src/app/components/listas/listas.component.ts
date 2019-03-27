@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Lista } from 'src/app/models/lista.model';
 import { Router } from '@angular/router';
 import { DeseosService } from 'src/app/services/deseos.service';
+import { AlertController,IonItemSliding } from "@ionic/angular";
+
 
 @Component({
   selector: 'app-listas',
@@ -14,7 +16,8 @@ export class ListasComponent implements OnInit {
 
   
   constructor(private router:Router,
-              public deseosService:DeseosService) {
+              public deseosService:DeseosService,
+              public alertController: AlertController) {
   
               
   }
@@ -34,5 +37,44 @@ export class ListasComponent implements OnInit {
     console.log('why');
     
   }
+  async editarLista(lista:Lista,slidingItem:IonItemSliding){
+    console.log('editar');
+    
+    const alert= await this.alertController.create({
+      header:'Editar Lista',
+      inputs:[
+        {
+          name:'titulo',
+          type:'text',
+          value:lista.titulo,
+          placeholder:'Nombre de la Lista'
+        }
+      ],
+      buttons:[
+        {
+          text:'Cancelar',
+          role:'cancel',
+          handler:()=>{
+            slidingItem.close();
+          }
+        },
+        {
+          text:'Editar',
+          handler:(data)=>{
+            if(data.titulo.length===0){
+              return;
+            }else{
+              this.deseosService.editarNombreLista(lista,data.titulo);
+              slidingItem.close();
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+    
+  }
+  
+ 
 
 }
