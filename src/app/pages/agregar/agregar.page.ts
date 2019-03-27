@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { DeseosService } from 'src/app/services/deseos.service';
+
+import { ActivatedRoute } from '@angular/router';
+import { Lista } from 'src/app/models/lista.model';
+import { ListaItem } from 'src/app/models/lista_item.model';
 
 @Component({
   selector: 'app-agregar',
@@ -7,9 +12,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgregarPage implements OnInit {
 
-  constructor() { }
+  lista:Lista;
+  nombreItem:string='';
+
+  constructor(private deseosService:DeseosService,
+              private route:ActivatedRoute) { 
+        const listaId=this.route.snapshot.paramMap.get('listaId');
+        // console.log(listaId);
+
+        this.lista=deseosService.obtenerLista(listaId);
+        // console.log(this.lista);
+        
+        
+  }
 
   ngOnInit() {
+  }
+
+  agregarItem(){
+    if(this.nombreItem.length===0){
+      return;
+    }
+    const nuevoItem = new ListaItem(this.nombreItem);
+    this.lista.items.push(nuevoItem);
+    this.nombreItem='';
+    this.deseosService.guardarStorage();
+
+  }
+  cambioCheck(item:ListaItem){
+    const pendientes=this.lista.items
+                          .filter( itemData=> !itemData.completado )
+                          .length;
+    if( pendientes===0 ){
+      this.lista.terminadaEn = new Date();
+      this.lista.terminada=true;
+    }else{
+      this.lista.terminadaEn = new Date();
+      this.lista.terminada = false;
+    }
+    
+    this.deseosService.guardarStorage();
+    console.log(this.lista);
+    
+  }
+  borrar(i:number){
+    this.lista.items.splice(i,1);
+    this.deseosService.guardarStorage();
   }
 
 }
